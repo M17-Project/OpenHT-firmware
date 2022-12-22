@@ -1,4 +1,4 @@
-# Zephyr Example Application
+# OpenHT Application
 
 This repository contains a Zephyr example application. The main purpose of this
 repository is to serve as a reference on how to structure Zephyr based
@@ -38,15 +38,15 @@ environment. You can follow the official
 
 ### Initialization
 
-The first step is to initialize the workspace folder (``my-workspace``) where
-the ``example-application`` and all Zephyr modules will be cloned. You can do
+The first step is to initialize the workspace folder (``openht-workspace``) where
+the ``openht_firmware`` and all Zephyr modules will be cloned. You can do
 that by running:
 
 ```shell
-# initialize my-workspace for the example-application (main branch)
-west init -m https://github.com/zephyrproject-rtos/example-application --mr main my-workspace
+# initialize openht-workspace for the openht_firmware (main branch)
+west init -m https://github.com/invalidopc0de/openht_firmware.git --mr main openht-workspace
 # update Zephyr modules
-cd my-workspace
+cd openht-workspace
 west update
 ```
 

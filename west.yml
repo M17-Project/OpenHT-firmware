@@ -3,8 +3,7 @@
 
 manifest:
   self:
-    path: example-application
-    west-commands: scripts/west-commands.yml
+    path: openht_firmware
 
   remotes:
     - name: zephyrproject-rtos
