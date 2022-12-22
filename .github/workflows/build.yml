@@ -12,21 +12,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          path: example-application
+          path: openht-firmware
 
       - name: Initialize
-        working-directory: example-application
+        working-directory: openht-firmware
         run: |
           west init -l .
           west update
 
       - name: Build firmware
-        working-directory: example-application
+        working-directory: openht-firmware
         run: |
           west build -b custom_plank app
 
       - name: Twister Tests
-        working-directory: example-application
+        working-directory: openht-firmware
         run: |
           ../zephyr/scripts/twister -G --board-root boards/ --testsuite-root ./tests/
 
@@ -34,4 +34,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: example-application/build/zephyr/zephyr.*
+          path: openht-firmware/build/zephyr/zephyr.*
