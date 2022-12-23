@@ -52,24 +52,13 @@ west update
 
 ### Build & Run
 
-The application can be built by running:
+The application can be built for the STM32F469 Discovery board by running:
 
 ```shell
-west build -b $BOARD app
+west build -b stm32f469i_disco app
 ```
 
-where `$BOARD` is the target board. The `custom_plank` board found in this
-repository can be used. Note that Zephyr sample boards may be used if an
-appropriate overlay is provided (see `app/boards`).
-
-A sample debug configuration is also provided. You can apply it by running:
-
-```shell
-west build -b $BOARD app -- -DOVERLAY_CONFIG=debug.conf
-```
-
-Note that you may also use it together with `rtt.conf` if using Segger RTT. Once
-you have built the application you can flash it by running:
+Once you have built the application you can flash it by running:
 
 ```shell
 west flash
