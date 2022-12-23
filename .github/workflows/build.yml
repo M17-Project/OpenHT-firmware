@@ -23,7 +23,7 @@ jobs:
       - name: Build firmware
         working-directory: openht-firmware
         run: |
-          west build -b custom_plank app
+          west build -b stm32f469i_disco app
 
       - name: Twister Tests
         working-directory: openht-firmware
