@@ -6,6 +6,6 @@ compatible: "microchip,at86rf215"
 include: spi-device.yaml
 
 properties:
-    reset-gpios:
+    nrst-gpios:
       type: phandle-array
       required: true
