@@ -44,7 +44,7 @@ that by running:
 
 ```shell
 # initialize openht-workspace for the openht_firmware (main branch)
-west init -m https://github.com/invalidopc0de/openht-firmware.git --mr main openht-workspace
+west init -m https://github.com/M17-Project/OpenHT-firmware.git --mr main openht-workspace
 # update Zephyr modules
 cd openht-workspace
 west update
