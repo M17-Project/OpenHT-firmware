@@ -39,12 +39,12 @@ environment. You can follow the official
 ### Initialization
 
 The first step is to initialize the workspace folder (``openht-workspace``) where
-the ``openht_firmware`` and all Zephyr modules will be cloned. You can do
+the ``openht-firmware`` and all Zephyr modules will be cloned. You can do
 that by running:
 
 ```shell
 # initialize openht-workspace for the openht_firmware (main branch)
-west init -m https://github.com/invalidopc0de/openht_firmware.git --mr main openht-workspace
+west init -m https://github.com/invalidopc0de/openht-firmware.git --mr main openht-workspace
 # update Zephyr modules
 cd openht-workspace
 west update
