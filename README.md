@@ -55,7 +55,7 @@ west update
 The application can be built for the STM32F469 Discovery board by running:
 
 ```shell
-west build -b stm32f469i_disco app
+west build -b stm32f469i_disco openht-firmware
 ```
 
 Once you have built the application you can flash it by running:
