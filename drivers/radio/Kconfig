@@ -1,0 +1,8 @@
+menuconfig RADIO
+	bool "Radio Drivers"
+	help
+	  Include radio drivers in system config
+
+if RADIO
+rsource "at86rf215/Kconfig"
+endif # RADIO

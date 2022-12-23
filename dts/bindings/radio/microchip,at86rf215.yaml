@@ -1,0 +1,6 @@
+description: |
+  Atmel AT86RF215 Driver
+
+compatible: "microchip,at86rf215"
+
+include: spi-device.yaml

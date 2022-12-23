@@ -1,0 +1,1 @@
+add_subdirectory_ifdef(CONFIG_AT86RF215 at86rf215)

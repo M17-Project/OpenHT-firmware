@@ -1,0 +1,7 @@
+config AT86RF215
+	bool "Atmel AT86RF215 Radio Driver"
+	default y
+	depends on DT_HAS_MICROCHIP_AT86RF215_ENABLED
+	select SPI
+	help
+	  Atmel AT86RF215 Radio Driver
