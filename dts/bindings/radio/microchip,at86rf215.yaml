@@ -4,3 +4,8 @@ description: |
 compatible: "microchip,at86rf215"
 
 include: spi-device.yaml
+
+properties:
+    reset-gpios:
+      type: phandle-array
+      required: true

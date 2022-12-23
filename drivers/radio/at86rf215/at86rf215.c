@@ -6,6 +6,7 @@
 
 #include <zephyr/device.h>
 #include <zephyr/drivers/spi.h>
+#include <zephyr/drivers/gpio.h>
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(microchip_at86rf215, 4);
@@ -21,13 +22,30 @@ struct at86rf215_data {
 
 struct at86rf215_config {
 	struct spi_dt_spec bus;
+	struct gpio_dt_spec reset_gpio;
 };
 
 static const struct at86rf215_config dev_config = {
 	.bus = SPI_DT_SPEC_INST_GET(0, SPI_WORD_SET(8) | SPI_TRANSFER_MSB, 0),
+	.reset_gpio = GPIO_DT_SPEC_INST_GET(0, reset_gpios)
 };
 
 static struct at86rf215_data dev_data;
+
+void at86rf215_rst(const struct device *dev)
+{
+	const struct at86rf215_config *conf = dev->config;
+
+	/* Ensure control lines have correct levels. */
+	gpio_pin_set_dt(&conf->reset_gpio, 0);
+
+	/* Wait typical time of timer TR1. */
+	k_busy_wait(330);
+
+	gpio_pin_set_dt(&conf->reset_gpio, 1);
+	k_busy_wait(10);
+	gpio_pin_set_dt(&conf->reset_gpio, 0);
+}
 
 static int at86rf215_init(const struct device *dev)
 {
@@ -39,6 +57,8 @@ static int at86rf215_init(const struct device *dev)
 		LOG_ERR("SPI device not ready");
 		return -ENODEV;
 	}
+
+	at86rf215_rst(dev);
 
 	// Woj's code goes here :) 
 
