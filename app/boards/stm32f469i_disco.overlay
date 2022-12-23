@@ -22,11 +22,11 @@
 
 
 &arduino_spi {
-    cs-gpios = <&arduino_header 16 GPIO_ACTIVE_LOW>;
+    cs-gpios = <&arduino_header 10 GPIO_ACTIVE_LOW>;
     at86rf215@0 {
         compatible = "microchip,at86rf215";
         reg = <0>;
 		spi-max-frequency = <1000000>; /* conservatively set to 1MHz */
-        nrst-gpios = <&arduino_header 17 GPIO_ACTIVE_LOW>;
+        nrst-gpios = <&arduino_header 9 GPIO_ACTIVE_LOW>;
     };
 };
