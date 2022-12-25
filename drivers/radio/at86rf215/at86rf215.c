@@ -114,7 +114,8 @@ static int at86rf215_vco0_set(const struct device *dev, const uint32_t freq) {
     spi_transceive_dt(&config->bus, &tx_buff_set, NULL);
 
     return 0;
-  } else if (freq >= 779000000 && freq <= 1020000000) // range check
+  }
+  else if (freq >= 779000000 && freq <= 1020000000) // range check
   {
     uint32_t val = round((freq - 754000000) / (203125.0 / 1024.0));
 
@@ -141,7 +142,6 @@ static int at86rf215_vco0_set(const struct device *dev, const uint32_t freq) {
 
 static int at86rf215_init(const struct device *dev) {
   const struct at86rf215_config *config = dev->config;
-  int ret = 0;
 
   LOG_DBG("Initializing at86rf215");
 
@@ -152,7 +152,9 @@ static int at86rf215_init(const struct device *dev) {
 
   at86rf215_reset(dev);
 
-  if (at86rf215_read_id(dev) == 0x34) // correct chip && SPI comms OK?
+  uint8_t dev_id = at86rf215_read_id(dev);
+
+  if (dev_id == 0x34) // correct chip && SPI comms OK?
   {
     // IQIFC1.CHPM=1; IQ mode for both transceivers
     at86rf215_write(dev, 0x000B, 1 << 4);
@@ -190,13 +192,13 @@ static int at86rf215_init(const struct device *dev) {
     at86rf215_write(dev, 0x0103, 0x04);
 
     LOG_DBG("at86rf215 Initialized");
-    ret = 0;
-  } else {
-    LOG_ERR("Unable to read ID from at86rf215");
-    ret = -1;
+    return 0;
   }
-
-  return ret;
+  else
+  {
+    LOG_ERR("Unexpected ID from at86rf215: 0x%02X", dev_id);
+    return -1;
+  }
 }
 
 DEVICE_DT_INST_DEFINE(0, at86rf215_init, NULL, &dev_data, &dev_config,
